@@ -3,8 +3,7 @@ import ObjectiveC.runtime
 
 #if DEBUG
 public struct JSInterfacePluginScanner {
-    init() {}
-    var classPtrInfo: (classesPtr: UnsafeMutablePointer<AnyClass>, numberOfClasses: Int)? {
+    private static var classPtrInfo: (classesPtr: UnsafeMutablePointer<AnyClass>, numberOfClasses: Int)? {
         let numberOfClasses = Int(objc_getClassList(nil, 0))
         guard numberOfClasses > 0 else {
             return nil
@@ -18,7 +17,7 @@ public struct JSInterfacePluginScanner {
         return (classesPtr, numberOfClasses)
     }
 
-    var plugins: [JSInterfacePlugin.Type] {
+    public static var plugins: [JSInterfacePlugin.Type] {
         guard let (classesPtr, numberOfClasses) = classPtrInfo else {
             return []
         }
