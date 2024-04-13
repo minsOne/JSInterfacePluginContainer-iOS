@@ -3,7 +3,7 @@ import WebKit
 
 public protocol JSInterfacePluginType: AnyObject {
     var action: String { get }
-    func callAsAction(_ request: [String: String], with: WKWebView)
+    func callAsAction(_ message: [String: Any], with: WKWebView)
 }
 
 /// DO NOT USE THIS CODE DIRECTLY

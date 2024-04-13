@@ -7,7 +7,7 @@ class OpenPopupJSPlugin: JSInterfacePlugin {
         "openPopup"
     }
 
-    func callAsAction(_ request: [String: String], with webView: WKWebView) {
+    func callAsAction(_ message: [String: Any], with webView: WKWebView) {
         closure?(webView)
     }
 

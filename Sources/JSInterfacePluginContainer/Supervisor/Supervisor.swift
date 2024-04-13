@@ -23,13 +23,13 @@ public extension JSInterfaceSupervisor {
         loadedPlugins.updateValue(plugin, forKey: action)
     }
 
-    func register(contentsOf newElements: [JSInterfacePlugin]) {
+    func loadPlugin(contentsOf newElements: [JSInterfacePlugin]) {
         newElements.forEach { loadPlugin($0) }
     }
 }
 
 public extension JSInterfaceSupervisor {
-    func resolve(_ action: String, request: [String: String], with webView: WKWebView) {
+    func resolve(_ action: String, message: [String: String], with webView: WKWebView) {
         guard
             let plugin = loadedPlugins[action]
         else {
@@ -37,6 +37,6 @@ public extension JSInterfaceSupervisor {
             return
         }
 
-        plugin.callAsAction(request, with: webView)
+        plugin.callAsAction(message, with: webView)
     }
 }
