@@ -3,7 +3,7 @@ import Foundation
 #if DEBUG
 public extension [JSInterfacePlugin] {
     mutating func update<T: JSInterfacePlugin>(_ type: T.Type, closure: (T) -> (T)) {
-        let plugin = first(where: { ($0 as? T) != nil }) as? T
+        let plugin = first(where: { $0 is T }) as? T
         guard let plugin else { return }
 
         replace(closure(plugin))

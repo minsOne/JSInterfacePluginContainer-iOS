@@ -2,7 +2,7 @@ import Foundation
 import JSInterfacePluginContainer
 import WebKit
 
-class OpenPopupJSPlugin: JSInterfacePlugin {
+class MockJSPlugin: JSInterfacePlugin {
     var action: String {
         "openPopup"
     }

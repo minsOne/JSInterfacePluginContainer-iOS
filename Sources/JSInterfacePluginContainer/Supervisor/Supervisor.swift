@@ -17,8 +17,10 @@ public class JSInterfaceSupervisor {
 public extension JSInterfaceSupervisor {
     func loadPlugin(_ plugin: JSInterfacePlugin) {
         let action = plugin.action
-        if let _ = loadedPlugins[action] {
+
+        guard loadedPlugins[action] == nil else {
             assertionFailure("\(action) Action is existed. Please check Plugin \(plugin)")
+            return
         }
         loadedPlugins.updateValue(plugin, forKey: action)
     }
@@ -30,10 +32,8 @@ public extension JSInterfaceSupervisor {
 
 public extension JSInterfaceSupervisor {
     func resolve(_ action: String, message: [String: String], with webView: WKWebView) {
-        guard
-            let plugin = loadedPlugins[action]
-        else {
-            assertionFailure("\(action) Action is Not Loaded. Please check action - \(action)")
+        guard let plugin = loadedPlugins[action] else {
+            assertionFailure("\(action) Action is not loaded. Please check plugin")
             return
         }
 
