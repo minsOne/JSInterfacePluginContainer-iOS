@@ -1,5 +1,7 @@
 # JavaScript Plugin Container for Swift
 
+[English](README.md) | [한국어](README-ko.md)
+
 ## Overview
 The JavaScript Plugin Container is a Swift-based library designed to facilitate communication between Swift applications and JavaScript code within WKWebViews. It allows for a structured and dynamic approach to handle JavaScript calls within Swift by leveraging a plugin architecture.
 
@@ -11,6 +13,7 @@ The JavaScript Plugin Container is a Swift-based library designed to facilitate 
 
 ## Requirements
 - iOS 13.0+
+- Swift 5.10
 
 ## Installation
 To integrate the JavaScript Plugin Container into your project, copy the provided `.swift` files directly into your project or create a Swift Package:
@@ -31,9 +34,7 @@ Implement the `JSInterfacePluginType` protocol with your custom plugin classes:
 
 ```swift
 class MyPlugin: JSInterfacePlugin {
-    var action: String {
-        return "myAction"
-    }
+    var action: String { "myAction" }
 
     func callAsAction(_ message: [String: Any], with webView: WKWebView) {
         // Handle the action
