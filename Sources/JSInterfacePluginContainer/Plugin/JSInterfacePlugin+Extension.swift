@@ -2,11 +2,16 @@ import Foundation
 
 #if DEBUG
 public extension [JSInterfacePlugin] {
-    mutating func update<T: JSInterfacePlugin>(_ type: T.Type, closure: (T) -> (T)) {
-        let plugin = first(where: { $0 is T }) as? T
-        guard let plugin else { return }
+    @discardableResult
+    func update<T: JSInterfacePlugin>(_ type: T.Type, closure: (T) -> Void) -> Self {
+        var plugins = self
+        let plugin = plugins.first(where: { $0 is T }) as? T
+        guard let plugin else { return self }
 
-        replace(closure(plugin))
+        closure(plugin)
+        plugins.replace(plugin)
+
+        return plugins
     }
 
     mutating func replace(_ newPlugin: JSInterfacePlugin) {

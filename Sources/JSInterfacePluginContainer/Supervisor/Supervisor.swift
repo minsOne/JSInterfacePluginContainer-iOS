@@ -32,7 +32,10 @@ public extension JSInterfaceSupervisor {
 
 public extension JSInterfaceSupervisor {
     func resolve(_ action: String, message: [String: String], with webView: WKWebView) {
-        guard let plugin = loadedPlugins[action] else {
+        guard
+            let plugin = loadedPlugins[action],
+            plugin.action == action
+        else {
             assertionFailure("\(action) Action is not loaded. Please check plugin")
             return
         }
