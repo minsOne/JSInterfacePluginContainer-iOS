@@ -4,9 +4,8 @@ import XCTest
 @testable import JSInterfacePluginContainer
 
 final class JSInterfacePluginScannerTests: XCTestCase {
-    func testScanPlugin() {
-        let pluginTypes = JSInterfacePluginScanner.plugins
-        let plugins = pluginTypes.map { $0.init() }
+    func testScanningPlugins() {
+        let plugins = JSInterfacePluginScanner.plugins.map { $0.init() }
         XCTAssertEqual(plugins.count, 2)
 
         let hasUniqueActions = Dictionary(grouping: plugins, by: \.action)

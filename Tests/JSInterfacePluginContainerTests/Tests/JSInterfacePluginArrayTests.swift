@@ -3,15 +3,17 @@ import XCTest
 
 @testable import JSInterfacePluginContainer
 
-final class JSInterfacePluginArrayTests: XCTestCase {
-    func testReplaceOnePlugin() {
-        // Given
-        var plugins = JSInterfacePluginScanner
-            .plugins
-            .map { $0.init() }
-        let newPlugin = OpenPopupJSPlugin()
+final class JSInterfacePluginArrayReplaceTests: XCTestCase {
+    var plugins: [JSInterfacePlugin] = []
 
-        XCTAssertEqual(plugins.count, 2)
+    override func setUp() {
+        super.setUp()
+        plugins = JSInterfacePluginScanner.plugins.map { $0.init() }
+    }
+
+    func testReplacingOnePlugin() {
+        // Given
+        let newPlugin = OpenPopupJSPlugin()
 
         // When
         plugins = plugins.replacing(newPlugin)
@@ -19,52 +21,60 @@ final class JSInterfacePluginArrayTests: XCTestCase {
         // Then
         XCTAssertEqual(plugins.count, 2)
         XCTAssertEqual(plugins.last?.action, newPlugin.action)
-
-        let plugin = plugins.last as? OpenPopupJSPlugin
-        XCTAssertNotNil(plugin)
+        XCTAssertNotNil(plugins.last as? OpenPopupJSPlugin)
     }
 
-    func testReplaceMultiplePlugin() {
+    func testReplacingMultiplePlugins() {
         // Given
-        let newPlugin1 = OpenPopupJSPlugin()
-        let newPlugin2 = ClosePopupJSPlugin()
-        var plugins = JSInterfacePluginScanner
-            .plugins
-            .map { $0.init() }
-
-        XCTAssertEqual(plugins.count, 2)
+        let newPlugin1 = ClosePopupJSPlugin()
+        let newPlugin2 = OpenPopupJSPlugin()
 
         // When
         plugins = plugins.replacing(contentsOf: [newPlugin1, newPlugin2])
 
         // Then
         XCTAssertEqual(plugins.count, 2)
-
-        do {
-            let plugin = plugins.popLast() as? ClosePopupJSPlugin
-            XCTAssertNotNil(plugin)
-            XCTAssertEqual(plugin?.action, newPlugin2.action)
-        }
-
-        do {
-            let plugin = plugins.popLast() as? OpenPopupJSPlugin
-            XCTAssertNotNil(plugin)
-            XCTAssertEqual(plugin?.action, newPlugin1.action)
-        }
+        XCTAssertNotNil(plugins.last as? OpenPopupJSPlugin)
+        XCTAssertNotNil(plugins.first as? ClosePopupJSPlugin)
     }
+}
 
-    func testUpdatePlugin() {
+final class JSInterfacePluginArrayAppendTests: XCTestCase {
+    var plugins: [JSInterfacePlugin] = []
+
+    func testAppendOnePlugin() {
         // Given
-        let supervisor = JSInterfaceSupervisor()
-        let newPlugin = OpenPopupJSPlugin()
-        var plugins = JSInterfacePluginScanner
-            .plugins
-            .map { $0.init() }
-
-        XCTAssertEqual(plugins.count, 2)
+        let newPlugin = ClosePopupJSPlugin()
 
         // When
-        let expectation = XCTestExpectation(description: "Plugin resolve asynchronously.")
+        plugins.replace(newPlugin)
+
+        // Then
+        XCTAssertEqual(plugins.count, 1)
+    }
+
+    func testAppendMultiplePlugins() {
+        // Given
+        let newPlugin1 = ClosePopupJSPlugin()
+        let newPlugin2 = OpenPopupJSPlugin()
+
+        // When
+        plugins = plugins.replacing(contentsOf: [newPlugin1, newPlugin2])
+
+        // Then
+        XCTAssertEqual(plugins.count, 2)
+    }
+}
+
+final class JSInterfacePluginArrayUpdateTests: XCTestCase {
+    func testUpdatingPlugin() {
+        // Given
+        var plugins = JSInterfacePluginScanner.plugins.map { $0.init() }
+        let supervisor = JSInterfaceSupervisor()
+        let newPlugin = OpenPopupJSPlugin()
+
+        // When
+        let expectation = XCTestExpectation(description: "Plugin resolves asynchronously.")
 
         plugins = plugins
             .update(OpenPopupJSPlugin.self) { plugin in
@@ -76,12 +86,11 @@ final class JSInterfacePluginArrayTests: XCTestCase {
                     expectation.fulfill()
                 }
             }
+
         supervisor.loadPlugin(contentsOf: plugins)
 
         // Then
-        supervisor.resolve(newPlugin.action,
-                           message: [:],
-                           with: .init())
+        supervisor.resolve(newPlugin.action, message: [:], with: .init())
 
         wait(for: [expectation], timeout: 1)
     }

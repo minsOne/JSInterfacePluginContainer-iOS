@@ -5,7 +5,7 @@ import XCTest
 @testable import JSInterfacePluginContainer
 
 final class JSInterfaceSupervisorTests: XCTestCase {
-    func testLoadPlugin() {
+    func testLoadingPlugin() {
         let plugin1 = OpenPopupJSPlugin()
         let plugin2 = ClosePopupJSPlugin()
         let supervisor = JSInterfaceSupervisor()
@@ -13,43 +13,38 @@ final class JSInterfaceSupervisorTests: XCTestCase {
         supervisor.loadPlugin(plugin1)
         supervisor.loadPlugin(plugin2)
 
-        XCTAssertEqual(supervisor.loadedPlugins.count,
-                       2)
+        XCTAssertEqual(supervisor.loadedPlugins.count, 2)
     }
 
-    func testLoadPluginArray() {
+    func testLoadingPluginArray() {
         let plugin1 = OpenPopupJSPlugin()
         let plugin2 = ClosePopupJSPlugin()
         let supervisor = JSInterfaceSupervisor()
 
         supervisor.loadPlugin(contentsOf: [plugin1, plugin2])
 
-        XCTAssertEqual(supervisor.loadedPlugins.count,
-                       2)
+        XCTAssertEqual(supervisor.loadedPlugins.count, 2)
     }
 
-    func testResolvePlugin() {
+    func testResolvingPlugin() {
         let plugin1 = OpenPopupJSPlugin()
         let plugin2 = ClosePopupJSPlugin()
         let supervisor = JSInterfaceSupervisor()
 
         supervisor.loadPlugin(contentsOf: [plugin1, plugin2])
 
-        let expectation = XCTestExpectation(description: "Plugin resolve asynchronously.")
-        
+        let expectation = XCTestExpectation(description: "Plugin resolves asynchronously.")
+
         plugin1.set { _ in
             expectation.fulfill()
         }
-        
+
         plugin2.set { _ in
             XCTFail("Do not resolve this plugin")
             expectation.fulfill()
         }
-        supervisor.resolve(plugin1.action,
-                           message: [:],
-                           with: .init())
-        
-        wait(for: [expectation], timeout: 1)
+        supervisor.resolve(plugin1.action, message: [:], with: WKWebView())
 
+        wait(for: [expectation], timeout: 1)
     }
 }
