@@ -1,6 +1,5 @@
 import Foundation
 
-#if DEBUG
 public extension [JSInterfacePlugin] {
     /// Updates a plugin of a specific type within the array.
     /// - Parameters:
@@ -21,7 +20,10 @@ public extension [JSInterfacePlugin] {
 
         return plugins
     }
+}
 
+#if DEBUG
+public extension [JSInterfacePlugin] {
     /// Replaces an existing plugin with a new one.
     mutating func replace(_ newPlugin: JSInterfacePlugin) {
         if let index = firstIndex(where: { $0.action == newPlugin.action }) {
