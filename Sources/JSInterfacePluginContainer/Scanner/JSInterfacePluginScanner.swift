@@ -28,8 +28,6 @@ public struct JSInterfacePluginScanner {
         var (plugins, ptrIndex) = ([JSInterfacePlugin.Type](), [Int]())
         let superCls = JSInterfacePluginBaseType.self
 
-        // MARK: Case 1 - class_getSuperclass
-
         for i in firstIndex ..< lastIndex {
             let cls: AnyClass = classesPtr[i]
             if class_getSuperclass(cls) == superCls,

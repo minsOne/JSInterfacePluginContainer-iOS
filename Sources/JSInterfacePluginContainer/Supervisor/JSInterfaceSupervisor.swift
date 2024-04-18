@@ -29,11 +29,14 @@ public extension JSInterfaceSupervisor {
 public extension JSInterfaceSupervisor {
     /// Resolves an action and calls the corresponding plugin with a message and web view.
     func resolve(_ action: String, message: [String: String], with webView: WKWebView) {
-        if let plugin = loadedPlugins[action],
-           plugin.action == action {
-            plugin.callAsAction(message, with: webView)
-        } else {
+        guard
+            let plugin = loadedPlugins[action],
+            plugin.action == action
+        else {
             assertionFailure("Failed to resolve \(action): Action is not loaded. Please ensure the plugin is correctly loaded.")
+            return
         }
+
+        plugin.callAsAction(message, with: webView)
     }
 }

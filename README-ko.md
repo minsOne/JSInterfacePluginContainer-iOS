@@ -28,7 +28,7 @@ dependencies: [
 ## 사용법
 
 ### 플러그인 정의
-사용자 지정 플러그인 클래스에서 `JSInterfacePluginType` 프로토콜을 구현합니다:
+사용자 지정 플러그인 클래스에서 `JSInterfacePluggable` 프로토콜을 구현합니다:
 
 ```swift
 class MyPlugin: JSInterfacePlugin {

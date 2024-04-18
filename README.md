@@ -30,7 +30,7 @@ dependencies: [
 ## Usage
 
 ### Defining a Plugin
-Implement the `JSInterfacePluginType` protocol with your custom plugin classes:
+Implement the `JSInterfacePluggable` protocol with your custom plugin classes:
 
 ```swift
 class MyPlugin: JSInterfacePlugin {

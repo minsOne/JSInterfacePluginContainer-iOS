@@ -77,10 +77,10 @@ final class JSInterfacePluginArrayUpdateTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Plugin resolves asynchronously.")
 
         plugins = plugins
-            .update(OpenPopupJSPlugin.self) { plugin in
+            .set(OpenPopupJSPlugin.self) { plugin in
                 plugin.set { _ in expectation.fulfill() }
             }
-            .update(ClosePopupJSPlugin.self) { plugin in
+            .set(ClosePopupJSPlugin.self) { plugin in
                 plugin.set { _ in
                     XCTFail("Do not resolve this plugin")
                     expectation.fulfill()

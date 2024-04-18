@@ -1,22 +1,21 @@
 import Foundation
 
 public extension [JSInterfacePlugin] {
-    /// Updates a plugin of a specific type within the array.
+    /// set a plugin of a specific type within the array.
     /// - Parameters:
     ///   - type: The type of plugin to update.
     ///   - closure: A closure that modifies the plugin.
     /// - Returns: The updated array of plugins.
     @discardableResult
-    func update<T: JSInterfacePlugin>(_ type: T.Type, closure: (T) -> Void) -> Self {
+    func set<T: JSInterfacePlugin>(_ type: T.Type, closure: (T) -> Void) -> Self {
         guard
-            let index = firstIndex(where: { $0 is T })
+            let index = firstIndex(where: { $0 is T }),
+            let plugin = self[index] as? T
         else { return self }
 
+        closure(plugin)
         var plugins = self
-        if let plugin = plugins[index] as? T {
-            closure(plugin)
-            plugins[index] = plugin
-        }
+        plugins[index] = plugin
 
         return plugins
     }
