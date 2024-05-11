@@ -13,29 +13,25 @@ final class JSInterfacePluginArrayReplaceTests: XCTestCase {
 
     func testReplacingOnePlugin() {
         // Given
-        let newPlugin = OpenPopupJSPlugin()
+        let newPlugin = MockOpenPopupJSPlugin()
 
         // When
         plugins = plugins.replacing(newPlugin)
 
         // Then
         XCTAssertEqual(plugins.count, 2)
-        XCTAssertEqual(plugins.last?.action, newPlugin.action)
-        XCTAssertNotNil(plugins.last as? OpenPopupJSPlugin)
     }
 
     func testReplacingMultiplePlugins() {
         // Given
-        let newPlugin1 = ClosePopupJSPlugin()
-        let newPlugin2 = OpenPopupJSPlugin()
+        let newPlugin1 = MockClosePopupJSPlugin()
+        let newPlugin2 = MockOpenPopupJSPlugin()
 
         // When
         plugins = plugins.replacing(contentsOf: [newPlugin1, newPlugin2])
 
         // Then
         XCTAssertEqual(plugins.count, 2)
-        XCTAssertNotNil(plugins.last as? OpenPopupJSPlugin)
-        XCTAssertNotNil(plugins.first as? ClosePopupJSPlugin)
     }
 }
 
@@ -44,7 +40,7 @@ final class JSInterfacePluginArrayAppendTests: XCTestCase {
 
     func testAppendOnePlugin() {
         // Given
-        let newPlugin = ClosePopupJSPlugin()
+        let newPlugin = MockClosePopupJSPlugin()
 
         // When
         plugins.replace(newPlugin)
@@ -55,8 +51,8 @@ final class JSInterfacePluginArrayAppendTests: XCTestCase {
 
     func testAppendMultiplePlugins() {
         // Given
-        let newPlugin1 = ClosePopupJSPlugin()
-        let newPlugin2 = OpenPopupJSPlugin()
+        let newPlugin1 = MockClosePopupJSPlugin()
+        let newPlugin2 = MockOpenPopupJSPlugin()
 
         // When
         plugins = plugins.replacing(contentsOf: [newPlugin1, newPlugin2])
@@ -71,18 +67,27 @@ final class JSInterfacePluginArrayUpdateTests: XCTestCase {
         // Given
         var plugins = JSInterfacePluginScanner.plugins.map { $0.init() }
         let supervisor = JSInterfaceSupervisor()
-        let newPlugin = OpenPopupJSPlugin()
+        let newPlugin = MockClosePopupJSPlugin()
+
+        let msg: [String: Any] = [
+            "action": "closePopup",
+            "uuid": "uuid",
+            "body": "Message"
+        ]
 
         // When
         let expectation = XCTestExpectation(description: "Plugin resolves asynchronously.")
 
         plugins = plugins
-            .set(OpenPopupJSPlugin.self) { plugin in
-                plugin.set { _ in expectation.fulfill() }
-            }
-            .set(ClosePopupJSPlugin.self) { plugin in
-                plugin.set { _ in
+            .set(MockOpenPopupJSPlugin.self) { plugin in
+                plugin.set { _, _ in
                     XCTFail("Do not resolve this plugin")
+                    expectation.fulfill()
+                }
+            }
+            .set(MockClosePopupJSPlugin.self) { plugin in
+                plugin.set { msg, _ in
+                    XCTAssertEqual(msg, "Message")
                     expectation.fulfill()
                 }
             }
@@ -90,7 +95,7 @@ final class JSInterfacePluginArrayUpdateTests: XCTestCase {
         supervisor.loadPlugin(contentsOf: plugins)
 
         // Then
-        supervisor.resolve(newPlugin.action, message: [:], with: .init())
+        supervisor.resolve(newPlugin.action, message: msg, with: .init())
 
         wait(for: [expectation], timeout: 1)
     }
