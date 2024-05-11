@@ -3,25 +3,26 @@ import WebKit
 
 /// Supervisor class responsible for loading and managing JS plugins.
 public class JSInterfaceSupervisor {
-    var loadedPlugins = [String: JSInterfacePlugin]()
+    var loadedPlugins = [String: JSInterfacePluggable]()
 
     public init() {}
 }
 
 public extension JSInterfaceSupervisor {
     /// Loads a single plugin into the supervisor.
-    func loadPlugin(_ plugin: JSInterfacePlugin) {
+    func loadPlugin(_ plugin: JSInterfacePluggable) {
         let action = plugin.action
 
-        if loadedPlugins[action] == nil {
-            loadedPlugins[action] = plugin
-        } else {
+        guard loadedPlugins[action] == nil else {
             assertionFailure("\(action) action already exists. Please check the plugin.")
+            return
         }
+
+        loadedPlugins[action] = plugin
     }
 
     /// Loads multiple plugins into the supervisor.
-    func loadPlugin(contentsOf newElements: [JSInterfacePlugin]) {
+    func loadPlugin(contentsOf newElements: [JSInterfacePluggable]) {
         newElements.forEach { loadPlugin($0) }
     }
 }
