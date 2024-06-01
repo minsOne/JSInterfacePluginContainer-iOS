@@ -1,0 +1,15 @@
+{
+  "originHash" : "0cd58c7d26ae9af5eee9868c58619054ac49aaf9dd3404f5dd002c265afbaf06",
+  "pins" : [
+    {
+      "identity" : "jsinterfaceplugincontainer-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/minsOne/JSInterfacePluginContainer-iOS",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ea54438df85824227c05865443191c0bd5fc57f4"
+      }
+    }
+  ],
+  "version" : 3
+}
