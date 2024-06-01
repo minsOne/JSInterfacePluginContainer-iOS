@@ -29,10 +29,10 @@ extension ViewController: WKScriptMessageHandler {
         didReceive message: WKScriptMessage
     ) {
         guard
+            let webView,
             message.name == messageHandler,
             let messageBody = message.body as? [String: Any],
-            let action = messageBody["action"] as? String,
-            let webView
+            let action = messageBody["action"] as? String
         else { return }
         
         supervisor.resolve(action, message: messageBody, with: webView)

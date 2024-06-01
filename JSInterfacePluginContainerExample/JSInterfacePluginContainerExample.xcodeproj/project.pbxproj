@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB5D7F662C0B8ECA00AA61C0 /* JSPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5D7F652C0B8ECA00AA61C0 /* JSPluginTests.swift */; };
 		CBEB3FE92C0B5404007BAD2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB3FE82C0B5404007BAD2A /* AppDelegate.swift */; };
 		CBEB3FEB2C0B5404007BAD2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB3FEA2C0B5404007BAD2A /* SceneDelegate.swift */; };
 		CBEB3FED2C0B5404007BAD2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB3FEC2C0B5404007BAD2A /* ViewController.swift */; };
@@ -19,7 +20,19 @@
 		CBEB40082C0B566A007BAD2A /* LoadingJSPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB40062C0B566A007BAD2A /* LoadingJSPlugin.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CB5D7F672C0B8ECA00AA61C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBEB3FDD2C0B5404007BAD2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBEB3FE42C0B5404007BAD2A;
+			remoteInfo = JSInterfacePluginContainerExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		CB5D7F632C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSInterfacePluginContainerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB5D7F652C0B8ECA00AA61C0 /* JSPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPluginTests.swift; sourceTree = "<group>"; };
 		CBEB3FE52C0B5404007BAD2A /* JSInterfacePluginContainerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSInterfacePluginContainerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBEB3FE82C0B5404007BAD2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBEB3FEA2C0B5404007BAD2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +47,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CB5D7F602C0B8ECA00AA61C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBEB3FE22C0B5404007BAD2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +65,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB5D7F642C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CB5D7F6C2C0B8EFA00AA61C0 /* Plugin */,
+			);
+			path = JSInterfacePluginContainerExampleTests;
+			sourceTree = "<group>";
+		};
+		CB5D7F6C2C0B8EFA00AA61C0 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				CB5D7F652C0B8ECA00AA61C0 /* JSPluginTests.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		CBEB3FDC2C0B5404007BAD2A = {
 			isa = PBXGroup;
 			children = (
 				CBEB3FE72C0B5404007BAD2A /* JSInterfacePluginContainerExample */,
+				CB5D7F642C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests */,
 				CBEB3FE62C0B5404007BAD2A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				CBEB3FE52C0B5404007BAD2A /* JSInterfacePluginContainerExample.app */,
+				CB5D7F632C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +135,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CB5D7F622C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB5D7F692C0B8ECA00AA61C0 /* Build configuration list for PBXNativeTarget "JSInterfacePluginContainerExampleTests" */;
+			buildPhases = (
+				CB5D7F5F2C0B8ECA00AA61C0 /* Sources */,
+				CB5D7F602C0B8ECA00AA61C0 /* Frameworks */,
+				CB5D7F612C0B8ECA00AA61C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB5D7F682C0B8ECA00AA61C0 /* PBXTargetDependency */,
+			);
+			name = JSInterfacePluginContainerExampleTests;
+			productName = JSInterfacePluginContainerExampleTests;
+			productReference = CB5D7F632C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CBEB3FE42C0B5404007BAD2A /* JSInterfacePluginContainerExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBEB3FF92C0B5406007BAD2A /* Build configuration list for PBXNativeTarget "JSInterfacePluginContainerExample" */;
@@ -127,6 +183,10 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					CB5D7F622C0B8ECA00AA61C0 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = CBEB3FE42C0B5404007BAD2A;
+					};
 					CBEB3FE42C0B5404007BAD2A = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -149,11 +209,19 @@
 			projectRoot = "";
 			targets = (
 				CBEB3FE42C0B5404007BAD2A /* JSInterfacePluginContainerExample */,
+				CB5D7F622C0B8ECA00AA61C0 /* JSInterfacePluginContainerExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CB5D7F612C0B8ECA00AA61C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBEB3FE32C0B5404007BAD2A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,6 +236,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CB5D7F5F2C0B8ECA00AA61C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB5D7F662C0B8ECA00AA61C0 /* JSPluginTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBEB3FE12C0B5404007BAD2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +257,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB5D7F682C0B8ECA00AA61C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBEB3FE42C0B5404007BAD2A /* JSInterfacePluginContainerExample */;
+			targetProxy = CB5D7F672C0B8ECA00AA61C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CBEB3FEE2C0B5404007BAD2A /* Main.storyboard */ = {
@@ -202,6 +286,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CB5D7F6A2C0B8ECA00AA61C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6794ZU679A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.minsone.JSInterfacePluginContainerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSInterfacePluginContainerExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JSInterfacePluginContainerExample";
+			};
+			name = Debug;
+		};
+		CB5D7F6B2C0B8ECA00AA61C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6794ZU679A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.minsone.JSInterfacePluginContainerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSInterfacePluginContainerExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JSInterfacePluginContainerExample";
+			};
+			name = Release;
+		};
 		CBEB3FF72C0B5406007BAD2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -254,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -311,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -382,6 +502,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CB5D7F692C0B8ECA00AA61C0 /* Build configuration list for PBXNativeTarget "JSInterfacePluginContainerExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB5D7F6A2C0B8ECA00AA61C0 /* Debug */,
+				CB5D7F6B2C0B8ECA00AA61C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CBEB3FE02C0B5404007BAD2A /* Build configuration list for PBXProject "JSInterfacePluginContainerExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
